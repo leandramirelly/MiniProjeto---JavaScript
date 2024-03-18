@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Projeto</title>
+</head>
+<body>
+    <script>
+        /*Array*/
+        var produtos = [
+            {nome: "calça", descricao: "jeans", cor: "azul claro", preco: "58,00"},
+        ]; 
+        
+         /*Loop principal*/
+         var opcao;
+    
+        do{
+            opcao = prompt("Escolha uma opção:  1 -> Adicionar;  2 -> Buscar;  3 -> Atualizar;  4 -> Visualizar;  5 -> Excluir;  0 -> Sair");
+
+            switch(opcao){
+                case "1":
+                    addProduto();
+                    break;
+                case "2":
+                    buscProduto();
+                    break;
+                case "3":
+                    atlProduto();
+                    break;
+                case "4":
+                    visuProduto();
+                    break;
+                case "5":
+                    exProduto();
+                    break;
+                case "0":
+                    alert("Saindo do programa. Até a próxima, bye bye!!")
+                    break;
+                default:
+                    alert("Opção não encontrada. Por favor escolha uma opção existente!");
+            }
+        }while(opcao !== "0");
+
+
+        /*Adicionar produtos (permitir que usuario insira as informações do produto, como 
+        nome, preço, descrição, etc., e adicione-o ao catálogo.)*/
+        function addProduto(){
+            var nomeProd = prompt("Digite o nome do produto: ");
+            var descProd = prompt("Digite uma descrição para o produto: ");
+            var corProd = prompt("Digite a cor do produto: ");
+            var precoProd = prompt("Digite o preço do produto: ");
+            
+            var novoProd = {nome: nomeProd, descricao: descProd, cor: corProd, preco: precoProd};
+
+            produtos.push(novoProd);
+
+            alert("Novo produto adicionado com sucesso!");
+        }
+
+
+        /*Buscar produtos (permitir que usuario insira o nome do produto que deseja buscar e 
+        exiba as informações do produto, se encontrado.)*/
+        function buscProduto(){
+            var nomeProdBusc = prompt("Digite o nome do produto que você deseja encontrar: ");
+
+            for(var i = 0; i < produtos.length; i++){
+                if(produtos[i].nome === nomeProdBusc){
+                    alert(`Nome: ${produtos[i].nome}  Descrição: ${produtos[i].descricao}  Cor: ${produtos[i].cor} Preço: ${produtos[i].preco}`);
+                    prodEcnt = true;
+                    break;
+                }else{
+                    alert("O produto que você digitou não está no catálogo!")
+                }
+            }
+        }
+
+
+        /*Atualizar informções dos produtos (permitir que usuario atualize as informações de um produto 
+        existente, como preço, descrição, etc.)*/
+        function atlProduto(){
+            var nomeProdAtl = prompt("Digite o nome do produto que deseja atualizar as informações: ");
+
+            for(var i = 0; i < produtos.length; i++){
+                if(produtos[i].nome === nomeProdAtl){
+                    var novDesc = prompt("Digite a nova descrição do produto: ");
+                    var novCor = prompt("Digite a nova cor do seu produto: ");
+                    var novPreco = prompt("Digite o novo preço do seu produto: ");
+
+                    produtos[i].descricao = parseFloat(novDesc);
+                    produtos[i].cor = parseFloat(novCor);
+                    produtos[i].preco = parseFloat(novPreco);
+
+                    alert("As novas informações foram adicionadas com sucesso!");
+                    return;
+                }else{
+                    alert("O produto que você digitou não está no catálogo!");
+                }
+            }
+        }
+
+
+         /*Visualizar todos os produtos (exibir todos os produtos do catálogo de forma legível.)*/
+         function visuProduto(){
+            var visuProd = "Itens disponíveis no catálogo: \n\n";
+
+            for(var i = 0; i < produtos.length; i++){
+                visuProd += `Nome: ${produtos[i].nome} `;
+                visuProd += `Descrição: ${produtos[i].descricao} `;
+                visuProd += `Cor: ${produtos[i].cor} `;
+                visuProd += `Preço: ${produtos[i].preco}\n`;
+            }
+
+            alert(visuProd);
+        }
+
+
+        /*Remover produtos (permitir que usuário remova um produto existente do catálogo)*/
+        function exProduto(){
+            nomeProdEx = prompt("Digite o nome do produto que deseja excluir do catálogo: ");
+
+            for(var i = 0; i < produtos.length; i++){
+                if(produtos[i].nome === nomeProdEx){
+                    produtos.splice(i, 1);
+
+                    alert("O produto foi excluido com sucesso!");
+                    return;
+                }else{
+                    alert("O produto que você digitou não está no catálogo!");
+                }
+            }
+        }
+        
+    </script>
+</body>
+</html>
